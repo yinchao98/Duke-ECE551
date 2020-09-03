@@ -5,18 +5,26 @@ int maximum(int x, int y) {
     return y;
   }
 }
-int isBetweenAndEqual(int x, int y, int lower, int upper, int a, int b) {
-  if ((x > lower && x <= upper) && (y == a || y == b)) {
+int isBetweenAndEqual(int x, int y, int x_offset, int y_offset, int size2) {
+  if ((x >= x_offset && x < x_offset + size2) && (y == y_offset || y == y_offset + size2 - 1)) {
     return 1;
   }else {
+    if ((y >= y_offset && y < y_offset + size2) && (x == x_offset || x == x_offset + size2 -1)) {
+      return 1;
+    }else {
     return 0;
+    }
   }
 }
-int  isLessAndEqual(int x, int y, int upper, int a, int b) {
-  if ((x < upper) && (y == a || y == b)) {
+int  isLessAndEqual(int x, int y, int size1) {
+  if ((x < size1) && (y == 0 || y == size1 - 1)) {
     return 1;
   }else {
+    if ((y < size1) && (x == 0 || x == size1 -1)) {
+      return 1;
+    } else {
     return 0;
+    }
   }
 }
 void squares(int size1, int x_offset, int y_offset, int size2) {
@@ -35,10 +43,10 @@ void squares(int size1, int x_offset, int y_offset, int size2) {
       //    ((y is between y_offset and y_offset + size2) AND
       //     x is equal to either x_offset OR x_offset + size2 -1)
       // if so, print a *
-      if (isBetweenAndEqual(x, y, x_offset, x_offset +size2, y_offset, y_offset + size2 - 1) || isBetweenAndEqual(y, x, y_offset, y_offset + size2, x_offset, x_offset + size2 -1)) {
+      if (isBetweenAndEqual(x, y, x_offset, y_offset, size2)) {
 	printf("*");
       }else {
-	if (isLessAndEqual(x, y, size1, 0, size1-1) || isLessAndEqual(y, x, size1, 0, size1-1)) {
+	if (isLessAndEqual(x, y, size1)) {
 	  printf("#");
 	}else {
 	  printf(" ");
