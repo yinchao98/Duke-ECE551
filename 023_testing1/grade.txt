@@ -1,0 +1,21 @@
+Grading at 09/07/2020:10:30:56.907810
+For commit ID e3a08e9edb9c973c62ccc7183ee47475259730b7
+Grading at Mon Sep  7 18:30:56 CST 2020
+#################################################
+test input.1:
+Your file matched the expected output
+input.1 passed
+#################################################
+test input.2:
+Your file matched the expected output
+input.2 passed
+#################################################
+test input.3:
+Your file matched the expected output
+input.3 passed
+#################################################
+test input.4:
+Your file matched the expected output
+input.4 passed
+
+Overall Grade: A
