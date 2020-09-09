@@ -1,0 +1,47 @@
+Grading at 09/09/2020:05:11:36.529969
+For commit ID 1611f118482e69b591c91096e6b9a8978c3cc1d9
+Grading at Wed Sep  9 13:11:27 CST 2020
+Attempting to compile power.c
+Attempting to compile power.o with our main
+Checking for unsigned power (unsigned x, unsigned y)
+Found on line 1, column 1 
+Checking for no iteration (do, while, for)
+Checking that power is recursive
+0^0 was Correct
+0^1 was Incorrect
+0^2 was Incorrect
+0^6 was Incorrect
+0^8 was Incorrect
+0^11 was Incorrect
+1^0 was Correct
+1^1 was Incorrect
+1^2 was Incorrect
+1^6 was Incorrect
+1^8 was Incorrect
+1^11 was Incorrect
+4^0 was Correct
+4^1 was Incorrect
+4^2 was Incorrect
+4^6 was Incorrect
+4^8 was Incorrect
+4^11 was Incorrect
+5^0 was Correct
+5^1 was Incorrect
+5^2 was Incorrect
+5^6 was Incorrect
+5^8 was Incorrect
+5^11 was Incorrect
+9^0 was Correct
+9^1 was Incorrect
+9^2 was Incorrect
+9^6 was Incorrect
+9^8 was Incorrect
+9^11 was Incorrect
+12^0 was Correct
+12^1 was Incorrect
+12^2 was Incorrect
+12^6 was Incorrect
+12^8 was Incorrect
+12^11 was Incorrect
+
+Overall Grade: F
