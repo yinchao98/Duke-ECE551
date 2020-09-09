@@ -13,7 +13,6 @@ int main(void) {
 
   printf("I'm thinking of a number...\n");
   printf("What number do you guess?\n");
-
   if(fgets(buffer, 1024, stdin) == NULL) {
     printf("Oh no, you are giving up?  You lose...\n");
     return EXIT_FAILURE;
