@@ -1,1 +1,1 @@
-../027_tests_power/test-power.c
+../028_tests_power/test-power.c
