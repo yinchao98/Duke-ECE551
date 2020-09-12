@@ -4,6 +4,9 @@
 
 void reverse(char * str) {
   //WRITE ME!
+  if (str == NULL) {
+    return;
+  }
   // head pointer and tail pointer
   char* head = str;
   char* tail = str;
