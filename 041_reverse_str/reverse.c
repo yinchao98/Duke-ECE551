@@ -4,6 +4,32 @@
 
 void reverse(char * str) {
   //WRITE ME!
+  // head pointer and tail pointer
+  char* head = str;
+  char* tail = str;
+  size_t length = 0;
+  // look for the tail of string
+  while(*tail != '\0') {
+    tail++;
+    length++;
+  }
+  tail--;
+  // half length of the string
+  size_t halfLen;
+  if (length % 2 == 0) {
+    halfLen = length / 2;
+  } else {
+    halfLen = (length - 1) / 2;
+  }
+  // reverse the string
+  for (size_t i = 0; i < halfLen; i++) {
+    // swap the char in header pointer and tail pointer
+    char temp = *tail;
+    *tail = *head;
+    *head = temp;
+    head++;
+    tail--;
+  }
 }
 
 int main(void) {
