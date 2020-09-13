@@ -1,0 +1,17 @@
+Grading at 09/13/2020:07:46:40.898251
+For commit ID 54a2cdc2c08f939041d88a1072fbe24e0767ace6
+Grading at Sun Sep 13 15:46:37 CST 2020
+Attempting to compile breaker.c 
+gcc -o breaker break.c
+testcase1 passed
+#################################################
+testcase2:
+testcase2 passed
+#################################################
+testcase3:
+testcase3 failed
+#################################################
+testcase4:
+testcase4 passed
+
+Overall Grade: C
