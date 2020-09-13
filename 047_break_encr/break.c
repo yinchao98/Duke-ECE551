@@ -24,7 +24,7 @@ int getMax(int* alphaCount) {
 }
 
 int decrypt(int maxIndex) {
-	int key = maxIndex - ('e' - 'a');
+	int key = (maxIndex + 'a' - 'e' + 26) % 26;
 	return key;
 }
 
