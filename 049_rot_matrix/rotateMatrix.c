@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
 		i++;
 	}
 	char str[12];
-	if (fgets(str, 12, f) == NULL) {
+	if (fgets(str, 12, f) != NULL) {
 			fprintf(stderr, "Format of input is wrong!\n");
 			return EXIT_FAILURE;
 	} 
