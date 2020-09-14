@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 			return EXIT_FAILURE;
 		}
 		char* p = strchr(str, '\n');
-		if ((p == NULL) || (*p != str[10])) {
+		if ((p == NULL) || (p - str) != 10) {
 			fprintf(stderr, "Format of input is wrong!\n");
 			return EXIT_FAILURE;
 		} 
