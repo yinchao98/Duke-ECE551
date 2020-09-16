@@ -24,12 +24,12 @@ void printData(char** data, size_t count) {
 }
 
 int main(int argc, char ** argv) {
-  char** data = NULL;
-  char* curr = NULL;
-  size_t sz = 0;
-  size_t count = 0;
   // if there's no input file, use standard input
   if (argc == 1) {
+    char** data = NULL;
+    char* curr = NULL;
+    size_t sz = 0;
+    size_t count = 0;
     while (getline(&curr,&sz, stdin) != EOF) {
       data = realloc(data, (count + 1) * sizeof(*data));
       data[count] = curr;
@@ -42,6 +42,10 @@ int main(int argc, char ** argv) {
     free(data);
   } else { 
     for (size_t i = 1; i < argc; i++) {
+      char** data = NULL;
+      char* curr = NULL;
+      size_t sz = 0;
+      size_t count = 0;
       FILE * f = fopen(argv[i], "r");
       if (f == NULL) {
         perror("Could not open file");
