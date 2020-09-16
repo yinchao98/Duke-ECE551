@@ -1,36 +1,12 @@
-Grading at 09/16/2020:13:37:53.265525
-For commit ID 7876a3da5f3f216f29a188509def8c564ead9ec3
-Grading at Wed Sep 16 21:37:49 CST 2020
+Grading at 09/16/2020:13:41:28.239820
+For commit ID 805cf14ee2c770c0511cd6aa2ea796c564390b94
+Grading at Wed Sep 16 21:41:24 CST 2020
 Attempting to compile sortLines.c
 #################################################
 testcase1:
 testcase1 passed, your program successfully indicated a failure
-  - Valgrind reported errors
-valgrind was not clean
-==58953== Memcheck, a memory error detector
-==58953== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==58953== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==58953== 
-==58953== Parent PID: 58952
-==58953== 
-==58953== 
-==58953== HEAP SUMMARY:
-==58953==     in use at exit: 40 bytes in 1 blocks
-==58953==   total heap usage: 15 allocs, 14 frees, 10,136 bytes allocated
-==58953== 
-==58953== 40 bytes in 1 blocks are definitely lost in loss record 1 of 1
-==58953==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==58953==    by 0x108B74: main (in sortLines)
-==58953== 
-==58953== LEAK SUMMARY:
-==58953==    definitely lost: 40 bytes in 1 blocks
-==58953==    indirectly lost: 0 bytes in 0 blocks
-==58953==      possibly lost: 0 bytes in 0 blocks
-==58953==    still reachable: 0 bytes in 0 blocks
-==58953==         suppressed: 0 bytes in 0 blocks
-==58953== 
-==58953== For counts of detected and suppressed errors, rerun with: -v
-==58953== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
 #################################################
 testcase2:
 Your output is correct
@@ -39,34 +15,10 @@ valgrind was clean
 #################################################
 testcase3:
 Your output is correct
-  - Valgrind reported errors
-valgrind was not clean
-==59055== Memcheck, a memory error detector
-==59055== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59055== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==59055== 
-==59055== Parent PID: 59054
-==59055== 
-==59055== 
-==59055== HEAP SUMMARY:
-==59055==     in use at exit: 40 bytes in 1 blocks
-==59055==   total heap usage: 14 allocs, 13 frees, 9,584 bytes allocated
-==59055== 
-==59055== 40 bytes in 1 blocks are definitely lost in loss record 1 of 1
-==59055==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==59055==    by 0x108B74: main (in sortLines)
-==59055== 
-==59055== LEAK SUMMARY:
-==59055==    definitely lost: 40 bytes in 1 blocks
-==59055==    indirectly lost: 0 bytes in 0 blocks
-==59055==      possibly lost: 0 bytes in 0 blocks
-==59055==    still reachable: 0 bytes in 0 blocks
-==59055==         suppressed: 0 bytes in 0 blocks
-==59055== 
-==59055== For counts of detected and suppressed errors, rerun with: -v
-==59055== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
 #################################################
 testcase4:
 valgrind reported memory errors
 
-Overall Grade: D
+Overall Grade: C
