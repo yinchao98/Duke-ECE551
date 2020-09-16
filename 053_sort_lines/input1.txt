@@ -1,6 +1,1 @@
-cat is cute
-hello world
-dog is cute
-apple pie
-boys and girls
 
