@@ -39,6 +39,7 @@ int main(int argc, char ** argv) {
     free(curr);
     sortData(data, count);
     printData(data, count);
+    free(data);
   } else { 
     for (size_t i = 1; i < argc; i++) {
       FILE * f = fopen(argv[i], "r");
@@ -55,6 +56,7 @@ int main(int argc, char ** argv) {
       free(curr);
       sortData(data, count);
       printData(data, count);
+      free(data);
       if (fclose(f) != 0) {
         perror("Failed to close the input file!");
         return EXIT_FAILURE;
