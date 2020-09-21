@@ -34,6 +34,7 @@ kvarray_t * readKVs(const char * fname) {
 		// key
 		kvpair->key = realloc(kvpair->key, (pointer - line + 1) * sizeof(*(kvpair->key)));
 		strncpy(kvpair->key, line, pointer - line);
+		kvpair->key[pointer - line] = '\0';
 		// value
 		size_t i = pointer - line + 1;
 		size_t j = 0;
@@ -87,5 +88,4 @@ char * lookupValue(kvarray_t * pairs, const char * key) {
 	}
 	return NULL;
 }
-
 
