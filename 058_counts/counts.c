@@ -8,7 +8,8 @@ counts_t * createCounts(void) {
 	// initialize count_t
 	counts_t* countList = malloc(sizeof(*countList));
 	countList->countsArray = malloc(sizeof(*(countList->countsArray)));
-	countList->unknown = malloc(sizeof(countList->unknown));
+	countList->arraySize = 0;
+	countList->unknown = malloc(sizeof(*(countList->unknown)));
 	char* unknownName = "<unknown>";
 	// initialize unknown
 	countList->unknown->key = malloc((strlen(unknownName) + 1) * sizeof(*(countList->unknown->key)));
