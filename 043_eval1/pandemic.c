@@ -3,6 +3,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int isNumber(char c) {
+  if (c >= 48 && c<=57) {
+    return 1;
+  }
+  return 0;
+}
+
+double ariMean(unsigned *dataArray, size_t totalNum) {
+  double sum = 0;
+  for(size_t i = 0; i < totalNum; i++) {
+    sum += *(dataArray + i);
+  }
+  return sum/totalNum;
+}
 country_t parseLine(char * line) {
   //WRITE ME
   char* splitPointer = strchr(line, ',');
@@ -29,7 +43,7 @@ country_t parseLine(char * line) {
   // check whether the population is valid
   ptr++;
   while(*ptr != '\n') {
-    if(*ptr < 48 || *ptr >57) {
+    if(!isNumber(*ptr)) {
       fprintf(stderr, "The population is invalid!\n");
       exit(EXIT_FAILURE);
     }
@@ -42,6 +56,10 @@ country_t parseLine(char * line) {
 
 void calcRunningAvg(unsigned * data, size_t n_days, double * avg) {
   //WRITE ME
+  size_t avgLen = n_days - 6;
+  for(size_t i = 0; i < avgLen; i++) {
+    *(avg + i) = ariMean(data + i, 7);
+  }
 }
 
 void calcCumulative(unsigned * data, size_t n_days, uint64_t pop, double * cum) {
