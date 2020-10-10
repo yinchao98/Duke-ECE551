@@ -1,13 +1,7 @@
-Grading at 10/09/2020:12:18:16.505401
-For commit ID 0194b56f5f827e30ff08754e752df74062efbe6d
-Grading at Fri Oct  9 20:18:16 CST 2020
-Line_1_did_not_match
-Line_2_did_not_match
-Line_3_did_not_match
-Line_4_did_not_match
-Line_5_did_not_match
-Line_6_did_not_match
-Your file did not match the expected ouput
-Your output did not match what we expected.
+Grading at 10/10/2020:00:56:33.129273
+For commit ID 292b4e1e4ab0505d0719a76b46043bdde575a0d7
+Grading at Sat Oct 10 08:56:33 CST 2020
+Your file matched the expected output
+Your output matched what we expected
 
-Overall Grade: FAILED
+Overall Grade: PASSED
