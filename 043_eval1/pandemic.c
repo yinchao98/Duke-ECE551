@@ -76,7 +76,7 @@ country_t parseLine(char * line) {
   ans.name[i] = '\0';
 
   char* newLine = strchr(line, '\n');
-  // from splitPointer to the end, iteratively check whether the population is valid
+  // from splitPointer to the end, iteratively check if each character is a number
   ptr++;
   while(ptr != newLine) {
     if(!isNumber(*ptr)) {
@@ -114,7 +114,6 @@ void calcRunningAvg(unsigned * data, size_t n_days, double * avg) {
     fprintf(stderr, "The number of n_days is invalid!\n");
     exit(EXIT_FAILURE);
   }
-  
   size_t avgLen = n_days - 6;
   // from 0 to avgLen, iteratively calculate the seven-day average
   for(size_t i = 0; i < avgLen; i++) {
@@ -168,24 +167,9 @@ void printCountryWithMax(country_t * countries,
   unsigned maxNum[n_countries];
   // from 0 to n_countries
   for(size_t i = 0; i < n_countries; i++) {
-    // check each (data + i) pointer
-    if (data + i == NULL) {
-      fprintf(stderr, "The data + i pointer is invalid!\n");
-      exit(EXIT_FAILURE);
-    }
-    // check each *(data + i) pointer
-    if (*(data + i) == NULL) {
-      fprintf(stderr, "The *(data + i) pointer is invalid!\n");
-      exit(EXIT_FAILURE);
-    }
     // find the maximum number of each country
     size_t index = maxNumInd(*(data + i), n_days);
-
-    if (*(data + i) + index == NULL) {
-      fprintf(stderr, "The *(data + i) pointer is invalid!\n");
-      exit(EXIT_FAILURE);
-    }
-     maxNum[i] = *(*(data + i) + index);
+    maxNum[i] = *(*(data + i) + index);
   }
   // find the largest maximum number of all countries
   size_t indexCountry = maxNumInd(maxNum, n_countries);
