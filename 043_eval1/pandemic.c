@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
 
 #define MILLION 100000;
 
@@ -57,8 +58,8 @@ country_t parseLine(char * line) {
     exit(EXIT_FAILURE);
   }
   // check whether the name length is smaller than 64
-  if((splitPointer - line) > 64) {
-    fprintf(stderr, "name length is larger than 64!\n");
+  if((splitPointer - line) > 63) {
+    fprintf(stderr, "name length is too long!\n");
     exit(EXIT_FAILURE);
   }
   
@@ -71,14 +72,10 @@ country_t parseLine(char * line) {
     i++;
     ptr++;
   }
+  // add null terminator
   ans.name[i] = '\0';
 
-  // check newline symbol
   char* newLine = strchr(line, '\n');
-  if (newLine == NULL) {
-    fprintf(stderr, "There's no newLine symbol!\n");
-    exit(EXIT_FAILURE);
-  }
   // from splitPointer to the end, iteratively check whether the population is valid
   ptr++;
   while(ptr != newLine) {
@@ -90,6 +87,17 @@ country_t parseLine(char * line) {
   }
   // convert the character of population to a uint64_t type
   ans.population = strtoul(++splitPointer, &ptr, 10);
+  // check whether the population is out of the bound
+  if(errno == ERANGE) {
+    fprintf(stderr, "The population is too large!\n");
+    exit(EXIT_FAILURE);
+  }
+  errno = 0;
+  // check whether the population is 0
+  if(ans.population == 0) {
+    fprintf(stderr, "The population cannot be 0!\n");
+    exit(EXIT_FAILURE);
+  }
   return ans;
 }
 
@@ -122,16 +130,6 @@ void calcCumulative(unsigned * data, size_t n_days, uint64_t pop, double * cum) 
     fprintf(stderr, "The data is invalid!\n");
     exit(EXIT_FAILURE);
   }
-  // check n_days
-  if (n_days < 0) {
-    fprintf(stderr, "The number of n_days is invalid!\n");
-    exit(EXIT_FAILURE);
-  }
-  // check population
-  if (pop <= 0) {
-    fprintf(stderr, "The number of population is invalid!\n");
-    exit(EXIT_FAILURE);
-  }
 
   unsigned cumData = 0;
   double cumPerMillion = 0;
@@ -139,6 +137,11 @@ void calcCumulative(unsigned * data, size_t n_days, uint64_t pop, double * cum) 
   for(size_t i = 0; i < n_days; i++) {
     // calculate the cumulative data
     cumData += *(data + i);
+    // check cumData
+    if (cumData > pop) {
+      fprintf(stderr, "The cumData is larger than population!\n");
+      exit(EXIT_FAILURE);
+    }
     // calculate the data per 100,000 people
     cumPerMillion = (cumData * 1.0) / pop * MILLION;
     *(cum + i) = cumPerMillion;
@@ -157,26 +160,31 @@ void printCountryWithMax(country_t * countries,
     fprintf(stderr, "The countries struct is invalid!\n");
     exit(EXIT_FAILURE);
   }
-  // check n_countries
-  if (n_countries <= 0) {
-    fprintf(stderr, "The n_countries is invalid!\n");
-    exit(EXIT_FAILURE);
-  }
   // check data pointer
   if (data == NULL) {
     fprintf(stderr, "The data pointer is invalid!\n");
     exit(EXIT_FAILURE);
   }
-  // check n_days
-  if (n_days <= 0) {
-    fprintf(stderr, "The number of n_days is invalid!\n");
-    exit(EXIT_FAILURE);
-  }
   unsigned maxNum[n_countries];
   // from 0 to n_countries
   for(size_t i = 0; i < n_countries; i++) {
+    // check each (data + i) pointer
+    if (data + i == NULL) {
+      fprintf(stderr, "The data + i pointer is invalid!\n");
+      exit(EXIT_FAILURE);
+    }
+    // check each *(data + i) pointer
+    if (*(data + i) == NULL) {
+      fprintf(stderr, "The *(data + i) pointer is invalid!\n");
+      exit(EXIT_FAILURE);
+    }
     // find the maximum number of each country
-     size_t index = maxNumInd(*(data + i), n_days);
+    size_t index = maxNumInd(*(data + i), n_days);
+
+    if (*(data + i) + index == NULL) {
+      fprintf(stderr, "The *(data + i) pointer is invalid!\n");
+      exit(EXIT_FAILURE);
+    }
      maxNum[i] = *(*(data + i) + index);
   }
   // find the largest maximum number of all countries
