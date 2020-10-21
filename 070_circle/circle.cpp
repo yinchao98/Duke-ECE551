@@ -18,7 +18,7 @@ double Circle::intersectionArea(const Circle & otherCircle) {
   }
   if (r2 - r1 >= centerDis) {
     return PI*r1*r1;
-  } else {
+  } else if (r1 - r2 >= centerDis){
       return PI*r2*r2;
   }
   double cosVal1 = (r1*r1 + centerDis*centerDis - r2*r2)/(2*r1*centerDis);
