@@ -1,0 +1,10 @@
+Grading at 10/21/2020:08:51:48.039327
+For commit ID 40b15a972772de2c850289b6646f933a43872116
+Grading at Wed Oct 21 16:51:47 CST 2020
+Attempting to compile:
+g++    -c -o code.o code.cpp
+g++ -Wall -Werror -pedantic -ggdb3 -o code code.o
+Your file matched the expected output
+Your output matched what we expected
+
+Overall Grade: PASSED
