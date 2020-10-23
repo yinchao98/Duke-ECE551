@@ -1,0 +1,21 @@
+Grading at 10/23/2020:13:41:15.754771
+For commit ID 9f4ef90060914dbf169f98ab54ddaa1c529568c6
+Grading at Fri Oct 23 21:41:15 CST 2020
+Attempting to compile:
+rm -f *.o  *~ intMatrixTest
+The code did not compile!
+IntMatrix.cpp: In member function ‘IntMatrix IntMatrix::operator+(const IntMatrix&) const’:
+IntMatrix.cpp:86:36: error: no match for ‘operator+’ (operand types are ‘IntArray’ and ‘IntArray’)
+       sumMatrix[i][j] = rows[i][j] + rhs.rows[i][j];
+                         ~~~~~~~~~~~^~~~~~~~~~~~~~~~
+IntMatrix.cpp: In function ‘std::ostream& operator<<(std::ostream&, const IntMatrix&)’:
+IntMatrix.cpp:94:26: error: invalid use of member function ‘int IntMatrix::getRows() const’ (did you forget the ‘()’ ?)
+   for(int i = 0; i < rhs.getRows - 1; i++) {
+                      ~~~~^~~~~~~
+IntMatrix.cpp:95:10: error: no match for ‘operator*’ (operand type is ‘const IntArray’)
+     s << *rhs[i] << "\n";
+IntMatrix.cpp:97:17: error: invalid use of member function ‘int IntMatrix::getRows() const’ (did you forget the ‘()’ ?)
+   s << *rhs[rhs.getRows - 1] << "]";
+             ~~~~^~~~~~~
+
+Overall Grade: F
