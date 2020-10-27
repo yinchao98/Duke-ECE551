@@ -9,12 +9,9 @@ int main(int argc, char** argv) {
 	FILE* category = tryOpen(argv[1]);
 	FILE* story = tryOpen(argv[2]);
 	catarray_t* array = parseLine(category);
-	printWords(array);
 	char* storyTemplate = parseContent(story);
-	printf("%s", storyTemplate);
 	char* result = replaceTemplate(storyTemplate, array, 1);
 	printf("%s", result);
-	freeArray(array);
 	free(storyTemplate);
 	free(result);
 	tryClose(category);

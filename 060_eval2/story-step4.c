@@ -5,20 +5,27 @@
 
 int main(int argc, char** argv) {
 	//checkargs
-	FILE* category = tryOpen(argv[2]);
-	FILE* story = tryOpen(argv[3]);
-	catarray_t* array = parseLine(category);
-	printWords(array);
-	char* storyTemplate = parseContent(story);
-	printf("%s", storyTemplate);
 	char* result = NULL;
+	FILE* category = NULL;
+	FILE* story = NULL;
+	char* storyTemplate = NULL;
 	if(argc == 4) {
+		category = tryOpen(argv[2]);
+		story = tryOpen(argv[3]);
+		catarray_t* array = parseLine(category);
+		storyTemplate = parseContent(story);
 		result = replaceTemplate(storyTemplate, array, 0);
 	} else {
+		category = tryOpen(argv[1]);
+		story = tryOpen(argv[2]);
+		catarray_t* array = parseLine(category);
+		storyTemplate = parseContent(story);
 		result = replaceTemplate(storyTemplate, array, 1);
 	}
-	
 	printf("%s", result);
-	
+	free(storyTemplate);
+	free(result);
+	tryClose(category);
+	tryClose(story);
 	return EXIT_SUCCESS;
 }

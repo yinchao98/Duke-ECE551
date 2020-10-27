@@ -198,6 +198,9 @@ catarray_t* removeWord(catarray_t* array, char* word) {
 }
 
 void freeCat(category_t cat) {
+	for(int i = 0; i < cat.n_words; i++) {
+		free(cat.words[i]);
+	}
 	free(cat.words);
 }
 
@@ -226,7 +229,7 @@ char* replaceTemplate(char* story, catarray_t* array, int reused) {
 			usedWord.n_words++;
 			usedWord.words = realloc(usedWord.words, (usedWord.n_words) * sizeof(*usedWord.words));
 			usedWord.words[usedWord.n_words - 1] = strdup(replaceWord);
-			
+
 			count += strlen(usedWord.words[usedWord.n_words - 1]);
 			result = realloc(result, (count + 1) * sizeof(*result));
 			strcat(result, usedWord.words[usedWord.n_words - 1]);
@@ -239,7 +242,8 @@ char* replaceTemplate(char* story, catarray_t* array, int reused) {
 			}
 		}
 	}
-	
+	freeCat(usedWord);
+	freeArray(array);
 	return result;
 }
 
@@ -310,5 +314,3 @@ catarray_t* parseLine(FILE* f) {
     free(curr);
     return result;
 }
-
-
