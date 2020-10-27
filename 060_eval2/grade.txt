@@ -1,6 +1,6 @@
-Grading at 10/27/2020:07:02:36.870484
-For commit ID e4f9daf9cf2e4f193a719e3ed2b7a2e1655ce28d
-Grading at Tue Oct 27 15:02:36 CST 2020
+Grading at 10/27/2020:08:15:56.212196
+For commit ID 5f47fe38c07195f761ad4f27a591a76c42b1e190
+Grading at Tue Oct 27 16:15:55 CST 2020
 Doing some basic sanity checking for your submission
 
 Step 1
@@ -37,7 +37,7 @@ rm story-step3.o
 The code compiled (good)
 Executable story-step3 exists (good)
 Checking with provided test cases words.txt story2.txt
-Your file did not match the expected ouput
+Your file matched the expected output
 
 Step 4
 Checking that story-step4 compiles
@@ -49,13 +49,11 @@ rm story-step4.o
 The code compiled (good)
 Executable story-step4 exists (good)
 Checking with provided test cases words.txt story2.txt, no options
-Line_1_did_not_match
-Line_2_did_not_match
-Your file did not match the expected ouput
+Your file matched the expected output
 Checking with provided test cases words.txt story2.txt, -n option
-Your file did not match the expected ouput
+Your file matched the expected output
 
-You have NOT passed the pregrader's test cases.
-You should go back and debug the indicated step(s).
+You have passed the pregrader's test cases, but you should still
+do extensive testing of your own.
 
 Overall Grade: NO GRADE YET
