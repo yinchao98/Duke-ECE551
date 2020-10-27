@@ -110,9 +110,13 @@ int checkTemplate(char* template, catarray_t* array) {
 }
 
 char* getTemplateWord(char* template, category_t usedWord, catarray_t* array) {
+	const char* replaceWord = NULL;
+	if (array == NULL) {
+		replaceWord = chooseWord(template, array);
+		return (char*)replaceWord;
+	}
 	int i = checkInt(template);
 	int j = checkTemplate(template, array);
-	const char* replaceWord = NULL;
 	if(i >= 1 && i <= usedWord.n_words) {
 		replaceWord = usedWord.words[usedWord.n_words - i];
 	}else if(j != -1) {
@@ -229,7 +233,6 @@ char* replaceTemplate(char* story, catarray_t* array, int reused) {
 			usedWord.n_words++;
 			usedWord.words = realloc(usedWord.words, (usedWord.n_words) * sizeof(*usedWord.words));
 			usedWord.words[usedWord.n_words - 1] = strdup(replaceWord);
-
 			count += strlen(usedWord.words[usedWord.n_words - 1]);
 			result = realloc(result, (count + 1) * sizeof(*result));
 			strcat(result, usedWord.words[usedWord.n_words - 1]);
@@ -243,7 +246,9 @@ char* replaceTemplate(char* story, catarray_t* array, int reused) {
 		}
 	}
 	freeCat(usedWord);
-	freeArray(array);
+	if(array != NULL) {
+		freeArray(array);
+	}
 	return result;
 }
 
