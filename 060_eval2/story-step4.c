@@ -4,20 +4,21 @@
 #include <string.h>
 
 int main(int argc, char** argv) {
-	// checkargs
-	checkArgs(argc, 3);
-	FILE* category = tryOpen(argv[1]);
-	FILE* story = tryOpen(argv[2]);
+	//checkargs
+	FILE* category = tryOpen(argv[2]);
+	FILE* story = tryOpen(argv[3]);
 	catarray_t* array = parseLine(category);
 	printWords(array);
 	char* storyTemplate = parseContent(story);
 	printf("%s", storyTemplate);
-	char* result = replaceTemplate(storyTemplate, array, 1);
+	char* result = NULL;
+	if(argc == 4) {
+		result = replaceTemplate(storyTemplate, array, 0);
+	} else {
+		result = replaceTemplate(storyTemplate, array, 1);
+	}
+	
 	printf("%s", result);
-	freeArray(array);
-	free(storyTemplate);
-	free(result);
-	tryClose(category);
-	tryClose(story);
+	
 	return EXIT_SUCCESS;
 }

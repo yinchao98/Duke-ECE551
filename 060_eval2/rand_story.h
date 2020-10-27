@@ -9,9 +9,12 @@
 //any functions you want your main to use
 
 // try to open a file
+void checkArgs(int argc, int expected);
 FILE* tryOpen(char* fileName);
+void tryClose(FILE* f);
+void freeArray(catarray_t* array);
 char* parseContent(FILE* f);
-char* replaceTemplate(char* story, catarray_t* array);
+char* replaceTemplate(char* story, catarray_t* array, int reused);
 char* replaceBlank(char* story);
 catarray_t* parseLine(FILE* f);
 

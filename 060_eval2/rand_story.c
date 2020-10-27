@@ -3,6 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+void checkArgs(int argc, int expected) {
+	if(argc != expected) {
+		fprintf(stderr, "Invalid argc\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
 // given a filename, and try to open the file
 FILE* tryOpen(char* fileName) {
 	FILE* f = fopen(fileName, "r");
@@ -12,6 +19,13 @@ FILE* tryOpen(char* fileName) {
 		exit(EXIT_FAILURE);
 	}
 	return f;
+}
+
+void tryClose(FILE* f) {
+	if(fclose(f) == -1) {
+		fprintf(stderr, "Fail to close the file!\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 char* parseContent(FILE* f) {
@@ -26,7 +40,6 @@ char* parseContent(FILE* f) {
 	content = realloc(content, (count + 1) * sizeof(*content));
 	content[count] = '\0';
 	return content;
-
 }
 
 char* findTemplate(char* str) {
@@ -108,10 +121,87 @@ char* getTemplateWord(char* template, category_t usedWord, catarray_t* array) {
 		fprintf(stderr, "Invalid template format!\n");
 		exit(EXIT_FAILURE);
 	}
+
 	return (char*)replaceWord;
 }
 
-char* replaceTemplate(char* story, catarray_t* array) {
+// char* replaceTemplate(char* story, catarray_t* array) {
+// 	char* result = NULL;
+// 	char* ptr = story;
+// 	char* temp = NULL;
+// 	char* template = NULL;
+// 	char* replaceWord = NULL;
+// 	int count = 0;
+// 	category_t usedWord;
+// 	usedWord.n_words = 0;
+// 	usedWord.words = NULL;
+// 	while(*ptr != '\0') {
+// 		if(*ptr != '_') {
+// 			result = realloc(result, (count + 2) * sizeof(*result));
+// 			result[count] = *ptr;
+// 			result[count + 1] = '\0';
+// 			ptr++;
+// 			count++;
+// 		} else {
+// 			temp = findTemplate(ptr);
+// 			template = templateStr(ptr, temp);
+// 			// if template is an integer >= 1
+// 			replaceWord = getTemplateWord(template, usedWord, array);
+// 			usedWord.n_words++;
+// 			usedWord.words = realloc(usedWord.words, (usedWord.n_words) * sizeof(*usedWord.words));
+// 			usedWord.words[usedWord.n_words - 1] = replaceWord;
+// 			count += strlen(replaceWord);
+// 			result = realloc(result, (count + 1) * sizeof(*result));
+// 			strcat(result, replaceWord);
+// 			result[count] = '\0';
+// 			ptr = temp + 1;
+// 		}
+// 	}
+// 	return result;
+// }
+
+void freeArray(catarray_t* array) {
+	for(int i = 0; i < array->n; i++) {
+		for(int j = 0; j < array->arr[i].n_words; j++) {
+			free(array->arr[i].words[j]);
+		}
+		free(array->arr[i].words);
+		free(array->arr[i].name);
+	}
+	free(array->arr);
+	free(array);
+}
+
+catarray_t* removeWord(catarray_t* array, char* word) {
+	catarray_t* temp = malloc(sizeof(*temp));
+	temp->n = array->n;
+	temp->arr = malloc(array->n * sizeof(*temp->arr));
+	for(int i = 0; i < array->n; i++) {
+		temp->arr[i].name = strdup(array->arr[i].name);
+		temp->arr[i].words = NULL;
+		temp->arr[i].n_words = 0;
+	    int count = 0;
+	    for(int j = 0; j < array->arr[i].n_words; j++) {
+	    	if(!strcmp(word, array->arr[i].words[j])) {
+	    		continue;
+			} else {
+				temp->arr[i].words = realloc(temp->arr[i].words, (count + 1) * sizeof(*(temp->arr[i].words)));
+				temp->arr[i].words[count] = strdup(array->arr[i].words[j]);
+				count++;
+			}
+	    }
+	    temp->arr[i].n_words = count;
+	}
+	freeArray(array);
+	return temp;
+	// free array
+}
+
+void freeCat(category_t cat) {
+	free(cat.words);
+}
+
+char* replaceTemplate(char* story, catarray_t* array, int reused) {
 	char* result = NULL;
 	char* ptr = story;
 	char* temp = NULL;
@@ -135,14 +225,21 @@ char* replaceTemplate(char* story, catarray_t* array) {
 			replaceWord = getTemplateWord(template, usedWord, array);
 			usedWord.n_words++;
 			usedWord.words = realloc(usedWord.words, (usedWord.n_words) * sizeof(*usedWord.words));
-			usedWord.words[usedWord.n_words - 1] = replaceWord;
-			count += strlen(replaceWord);
+			usedWord.words[usedWord.n_words - 1] = strdup(replaceWord);
+			
+			count += strlen(usedWord.words[usedWord.n_words - 1]);
 			result = realloc(result, (count + 1) * sizeof(*result));
-			strcat(result, replaceWord);
+			strcat(result, usedWord.words[usedWord.n_words - 1]);
 			result[count] = '\0';
 			ptr = temp + 1;
+			free(template);
+			template = NULL;
+			if(!reused) {
+				array = removeWord(array, replaceWord);
+			}
 		}
 	}
+	
 	return result;
 }
 
@@ -176,6 +273,7 @@ catarray_t* parseLine(FILE* f) {
 	char * word = NULL;
 	size_t sz = 0;
 	catarray_t* result = malloc(sizeof(*result));
+	result->arr = NULL;
 	result->n = 0;
 	while (getline(&curr,&sz, f) >= 0) {
       // name
@@ -186,6 +284,7 @@ catarray_t* parseLine(FILE* f) {
       // if already have the category
       for(size_t i = 0; i < result->n; i++) {
       	if(!strcmp(name, result->arr[i].name)) {
+      		free(name);
       		(result->arr[i].n_words)++;
       		result->arr[i].words = realloc(result->arr[i].words, result->arr[i].n_words * sizeof(*(result->arr[i].words)));
       		result->arr[i].words[(result->arr[i].n_words) - 1] = word;
@@ -199,11 +298,16 @@ catarray_t* parseLine(FILE* f) {
 	    result->arr = realloc(result->arr, (result->n) * sizeof(*result->arr));
 	    result->arr[(result->n) - 1].name = name;
 	    result->arr[(result->n) - 1].n_words = 1;
+	    result->arr[(result->n) - 1].words = NULL;
 	    result->arr[(result->n) - 1].words = realloc(result->arr[(result->n) - 1].words, result->arr[(result->n) - 1].n_words * sizeof(*(result->arr[(result->n) - 1].words)));
 	    result->arr[(result->n) - 1].words[result->arr[(result->n) - 1].n_words - 1] = word;
-	    curr = NULL;
       }
+      free(curr);
+      curr = NULL;
+	  name = NULL;
+	  word = NULL;
     }
+    free(curr);
     return result;
 }
 
