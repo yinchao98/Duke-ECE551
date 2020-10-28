@@ -192,6 +192,16 @@ char* templateStr(char* start, char* end) {
 /*function: checkInt
 			convert the template string into a number*/
 int checkInt(char* template) {
+	char* ptr = template;
+	// check if all the characters are digits
+	while(*ptr != '\0') {
+		// if not, return -1
+		if(*ptr < 48 || *ptr > 57) {
+			return -1;
+		}
+		ptr++;
+	}
+	// if it is a valid number, convert to int value
 	int value = atoi(template);
 	return value;
 }
@@ -218,15 +228,15 @@ char* getTemplateWord(char* template, category_t usedWord, catarray_t* array) {
 		replaceWord = chooseWord(template, array);
 		return (char*)replaceWord;
 	}
-	int i = checkInt(template);
 	int j = checkTemplate(template, array);
-	// if the template represents a valid number
-	if(i >= 1 && i <= usedWord.n_words) {
-		// find the replaceWord in usedWord
-		replaceWord = usedWord.words[usedWord.n_words - i];
-	} else if(j != -1) { // if the template is a valid category name
+	int i = checkInt(template);
+	// if the template is a valid category name
+	if(j != -1) {
 		// randomly choose the replaceWord from the category
 		replaceWord = chooseWord(template, array);
+	} else if(i >= 1 && i <= usedWord.n_words) {
+		// find the replaceWord in usedWord
+		replaceWord = usedWord.words[usedWord.n_words - i];
 	} else {
 		// otherwise, the template is invalid, exits
 		errorHandling("Invalid template!\n");
