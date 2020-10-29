@@ -169,9 +169,14 @@ char* findTemplate(char* str) {
 		errorHandling("Invalid blank format!\n");
 	}
 	ptr++;
+	char* newLine = strchr(ptr, '\n');
 	char* end = strchr(ptr, '_');
 	// if the string is not ended with '_', exits
 	if(end == NULL) {
+		errorHandling("Invalid blank format!\n");
+	}
+	// if the two '_' are not in one line
+	if(end - newLine > 0) {
 		errorHandling("Invalid blank format!\n");
 	}
 	return end;
@@ -324,7 +329,7 @@ char* replaceTemplate(char* story, catarray_t* array, int reused) {
 			result[count + 1] = '\0';
 			ptr++;
 			count++;
-		} else { // if meets with blank and template
+		} else { // otherwise: meets with blank and template
 			// find the second '_'
 			temp = findTemplate(ptr);
 			// extract the template between two '_'
