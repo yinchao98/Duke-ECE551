@@ -74,7 +74,7 @@ char* getName(char* line) {
 	char* temp1 = strchr(line, ':');
 	// if there's not a semicolon, exits
     if(temp1 == NULL) {
-    	errorHandling("Invalid format!\n");
+    	errorHandling("Invalid word format!\n");
     }
     name = malloc((temp1 - line + 1) * sizeof(*name));
     strncpy(name, line, (temp1 - line));
@@ -100,6 +100,13 @@ char* getWord(char* line) {
 			given a catarray, the index of category and a word,
 			add the word into this category*/
 void updateCatWord(catarray_t* cat, size_t i, char* word) {
+	// check if this category already has the word
+	for(int j = 0; j < cat->arr[i].n_words; j++) {
+		if(!strcmp(word, cat->arr[i].words[j])) {
+			errorHandling("repeated word in this category!\n");
+		}
+	}
+	// add new word
 	cat->arr[i].n_words++;
 	cat->arr[i].words = realloc(cat->arr[i].words, cat->arr[i].n_words * sizeof(*(cat->arr[i].words)));
 	cat->arr[i].words[(cat->arr[i].n_words) - 1] = word;
@@ -109,11 +116,13 @@ void updateCatWord(catarray_t* cat, size_t i, char* word) {
 			given a catarray, the name of category and a word,
 			add one new category and put the word into it*/
 void addNewCat(catarray_t* cat, char* name, char* word) {
+	// add new category
 	cat->n++;
     cat->arr = realloc(cat->arr, (cat->n) * sizeof(*cat->arr));
     cat->arr[(cat->n) - 1].name = name;
     cat->arr[(cat->n) - 1].n_words = 1;
     cat->arr[(cat->n) - 1].words = NULL;
+    // add new word
     cat->arr[(cat->n) - 1].words = realloc(cat->arr[(cat->n) - 1].words, cat->arr[(cat->n) - 1].n_words * sizeof(*(cat->arr[(cat->n) - 1].words)));
     cat->arr[(cat->n) - 1].words[cat->arr[(cat->n) - 1].n_words - 1] = word;
 }
@@ -123,17 +132,15 @@ void addNewCat(catarray_t* cat, char* name, char* word) {
 			catarray struct*/
 catarray_t* parseLine(FILE* f) {
 	char * curr = NULL;
-	char * name = NULL;
-	char * word = NULL;
 	size_t sz = 0;
 	catarray_t* result = malloc(sizeof(*result));
 	result->arr = NULL;
 	result->n = 0;
 	while (getline(&curr,&sz, f) >= 0) {
       // extract the name
-      name = getName(curr);
+      char* name = getName(curr);
       // extract the word
-      word = getWord(curr);
+      char* word = getWord(curr);
       int exist = 0;
       // from 0 to result->n, try to match the category name
       for(size_t i = 0; i < result->n; i++) {
@@ -152,8 +159,6 @@ catarray_t* parseLine(FILE* f) {
       }
       free(curr);
       curr = NULL;
-	  name = NULL;
-	  word = NULL;
     }
     free(curr);
     return result;
@@ -239,14 +244,16 @@ char* getTemplateWord(char* template, category_t usedWord, catarray_t* array) {
 	if(j != -1) {
 		// randomly choose the replaceWord from the category
 		replaceWord = chooseWord(template, array);
-	} else if(i >= 1 && i <= usedWord.n_words) {
+		return (char*)replaceWord;;
+	}
+	if(i >= 1 && i <= usedWord.n_words) {
 		// find the replaceWord in usedWord
 		replaceWord = usedWord.words[usedWord.n_words - i];
-	} else {
-		// otherwise, the template is invalid, exits
-		errorHandling("Invalid template!\n");
-	}
-	return (char*)replaceWord;
+		return (char*)replaceWord;;
+	} 
+	// otherwise, the template is invalid, exits
+	errorHandling("Invalid template!\n");
+	return NULL;
 }
 
 /*function: freeArray
@@ -275,7 +282,7 @@ void freeCat(category_t cat) {
 /*function: removeWord
 			given the catarray_t, remove the word from the corresponding
 			category*/
-catarray_t* removeWord(catarray_t* array, char* word) {
+catarray_t* removeWord(catarray_t* array, char* template, char* word) {
 	// create a new catarray_t pointer to store the correct array
 	catarray_t* temp = malloc(sizeof(*temp));
 	temp->n = array->n;
@@ -288,7 +295,7 @@ catarray_t* removeWord(catarray_t* array, char* word) {
 	    int count = 0;
 	    for(int j = 0; j < array->arr[i].n_words; j++) {
 	    	// if the word is that we want to remove, do not copy
-	    	if(!strcmp(word, array->arr[i].words[j])) {
+	    	if((!strcmp(word, array->arr[i].words[j])) && (!strcmp(template, array->arr[i].name))) {
 	    		continue;
 			} else {
 				// copy the word
@@ -312,9 +319,6 @@ catarray_t* removeWord(catarray_t* array, char* word) {
 char* replaceTemplate(char* story, catarray_t* array, int reused) {
 	char* result = NULL;
 	char* ptr = story;
-	char* temp = NULL;
-	char* template = NULL;
-	char* replaceWord = NULL;
 	int count = 0;
 	// create a category_t to store the replace word used before
 	category_t usedWord;
@@ -331,11 +335,11 @@ char* replaceTemplate(char* story, catarray_t* array, int reused) {
 			count++;
 		} else { // otherwise: meets with blank and template
 			// find the second '_'
-			temp = findTemplate(ptr);
+			char* endPtr = findTemplate(ptr);
 			// extract the template between two '_'
-			template = templateStr(ptr, temp);
+			char* template = templateStr(ptr, endPtr);
 			// get the corresponding replaceWord according to template
-			replaceWord = getTemplateWord(template, usedWord, array);
+			char* replaceWord = getTemplateWord(template, usedWord, array);
 			// update usedWord category to store the replaceWord 
 			usedWord.n_words++;
 			usedWord.words = realloc(usedWord.words, (usedWord.n_words) * sizeof(*usedWord.words));
@@ -346,13 +350,12 @@ char* replaceTemplate(char* story, catarray_t* array, int reused) {
 			strcat(result, usedWord.words[usedWord.n_words - 1]);
 			result[count] = '\0';
 			// start with the character after the second '_'
- 			ptr = temp + 1;
-			free(template);
-			template = NULL;
+ 			ptr = endPtr + 1;
 			// if cannot reuse the word, remove it from the array
-			if(!reused) {
-				array = removeWord(array, replaceWord);
+			if(!reused && array!= NULL) {
+				array = removeWord(array, template, replaceWord);
 			}
+			free(template);
 		}
 	}
 	freeCat(usedWord);
