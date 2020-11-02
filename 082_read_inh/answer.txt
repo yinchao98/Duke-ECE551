@@ -1,4 +1,5 @@
 Fluffy purrs.
+Leon purrs.
 Leon roars.
 Aslan purrs.
 Aslan roars.
@@ -7,15 +8,15 @@ Leon roars.
 Aslan roars.
 Don't forget your destructors!
 ~Lion(Aslan)
-Aslan roars.
-at(Aslan)
+Alsan roars.
+~Cat(Aslan)
 Aslan purrs.
 ~Animal(Aslan)
 ~Lion(Leon)
 Leon roars.
-at(Leon)
+~Cat(Leon)
 Leon purrs.
 ~Animal(Leon)
-at(Fluffy)
+~Cat(Fluffy)
 Fluffy purrs.
 ~Animal(Fluffy)
