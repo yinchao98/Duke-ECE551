@@ -8,7 +8,7 @@ Leon roars.
 Aslan roars.
 Don't forget your destructors!
 ~Lion(Aslan)
-Alsan roars.
+Aslan roars.
 ~Cat(Aslan)
 Aslan purrs.
 ~Animal(Aslan)
