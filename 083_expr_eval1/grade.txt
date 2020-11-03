@@ -1,0 +1,52 @@
+Grading at 11/03/2020:01:50:17.116933
+For commit ID 91eff76235166e237d97fdba5d09b0e01df31dd7
+Grading at Tue Nov  3 09:50:14 CST 2020
+Compiling code
+The code compiled.
+---------------------
+Test case 1
+  - Valgrind was clean (no errors, no memory leaks)
+Line_9_did_not_match
+Line_10_did_not_match
+Line_11_did_not_match
+Line_14_did_not_match
+Line_15_did_not_match
+Line_16_did_not_match
+Line_17_did_not_match
+Line_18_did_not_match
+Line_19_did_not_match
+Line_20_did_not_match
+Line_21_did_not_match
+Line_22_did_not_match
+Your file did not match the expected ouput
+Testcase failed 
+---------------------
+Test case 2
+  - Valgrind was clean (no errors, no memory leaks)
+Line_12_did_not_match
+Line_13_did_not_match
+Line_14_did_not_match
+Line_15_did_not_match
+Line_16_did_not_match
+Line_17_did_not_match
+Line_33_did_not_match
+Line_34_did_not_match
+Line_35_did_not_match
+Line_38_did_not_match
+Line_39_did_not_match
+Line_40_did_not_match
+Line_41_did_not_match
+Line_42_did_not_match
+Line_43_did_not_match
+Line_44_did_not_match
+Line_45_did_not_match
+Line_46_did_not_match
+Your file did not match the expected ouput
+Testcase failed 
+---------------------
+Test case 3
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
+
+Overall Grade: F
