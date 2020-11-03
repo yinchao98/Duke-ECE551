@@ -31,7 +31,7 @@ public:
 	PlusExpression(Expression * lhs, Expression * rhs): lvalue(lhs), rvalue(rhs) {}
 	virtual std::string toString() const {
 		std::stringstream exp;
-		exp << "(" << lvalue->toString() << "+" << rvalue->toString() << ")" << "\n";
+		exp << "(" << lvalue->toString() << " + " << rvalue->toString() << ")";
 		return exp.str();
 	}
 	virtual ~PlusExpression() {
