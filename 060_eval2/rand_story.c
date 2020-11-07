@@ -103,7 +103,8 @@ void updateCatWord(catarray_t* cat, size_t i, char* word) {
 	// check if this category already has the word
 	for(int j = 0; j < cat->arr[i].n_words; j++) {
 		if(!strcmp(word, cat->arr[i].words[j])) {
-			errorHandling("repeated word in this category!\n");
+			free(word);
+			return;
 		}
 	}
 	// add new word
@@ -361,6 +362,11 @@ char* replaceTemplate(char* story, catarray_t* array, int reused) {
 	freeCat(usedWord);
 	if(array != NULL) {
 		freeArray(array);
+	}
+	// if result is null
+	if(result == NULL) {
+		result = realloc(result, sizeof(*result));
+		result[0] = '\0';
 	}
 	return result;
 }

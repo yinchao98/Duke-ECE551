@@ -1,0 +1,4 @@
+animal:cat
+animal:cat
+place:vi
+adjective:happy
