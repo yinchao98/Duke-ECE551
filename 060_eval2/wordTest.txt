@@ -1,5 +1,10 @@
-animal:cat
-animal:cat
-place:vi
+animal:warlus
+animal:dragon
+place:live:house
 adjective:happy
-:
+adjective:sad
+:here
+:there
+place:whitehouse
+1cat:mimi
+2dog:woll

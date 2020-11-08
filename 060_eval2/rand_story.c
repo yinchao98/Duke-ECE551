@@ -241,17 +241,17 @@ char* getTemplateWord(char* template, category_t usedWord, catarray_t* array) {
   }
   int j = checkTemplate(template, array);
   int i = checkInt(template);
+  // if the template is a valid integer
+  if(i >= 1 && i <= usedWord.n_words) {
+    replaceWord = usedWord.words[usedWord.n_words - i];
+    return (char*)replaceWord;
+  } 
   // if the template is a valid category name
   if(j != -1) {
     // randomly choose the replaceWord from the category
     replaceWord = chooseWord(template, array);
-    return (char*)replaceWord;;
+    return (char*)replaceWord;
   }
-  if(i >= 1 && i <= usedWord.n_words) {
-    // find the replaceWord in usedWord
-    replaceWord = usedWord.words[usedWord.n_words - i];
-    return (char*)replaceWord;;
-  } 
   // otherwise, the template is invalid, exits
   errorHandling("Invalid template!\n");
   return NULL;
