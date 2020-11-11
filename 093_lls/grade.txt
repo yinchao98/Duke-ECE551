@@ -1,35 +1,23 @@
-Grading at 11/11/2020:16:01:16.965235
-For commit ID b077401c3e24290f1f482cd887f22e97ba5dbb75
-Grading at Thu Nov 12 00:01:16 CST 2020
+Grading at 11/11/2020:16:04:02.734567
+For commit ID b3e19a81e7fedc6ee29594d1a078aa044ea44127
+Grading at Thu Nov 12 00:03:59 CST 2020
 -----------------------------------------------
 testcase 1 : Testing with LinkedList<int>
 ...compiling...
-In file included from tester.cpp:1:0:
-ll.h: In instantiation of ‘LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>&) [with T = int]’:
-tester.cpp:94:11:   required from here
-ll.h:50:9: error: lvalue required as left operand of assignment
-    this = &tempList;
-    ~~~~~^~~~~~~~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind reported errors
+Valgrind reported errors (test failed).
 -----------------------------------------------
 testcase 2 : Testing with LinkedList<std::string>
 ...compiling...
-In file included from tester.cpp:1:0:
-ll.h: In instantiation of ‘LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>&) [with T = std::__cxx11::basic_string<char>]’:
-tester.cpp:94:11:   required from here
-ll.h:50:9: error: lvalue required as left operand of assignment
-    this = &tempList;
-    ~~~~~^~~~~~~~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind reported errors
+Valgrind reported errors (test failed).
 -----------------------------------------------
 testcase 3 : Testing with LinkedList<(a custom class we wrote)>
 ...compiling...
-In file included from tester.cpp:1:0:
-ll.h: In instantiation of ‘LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>&) [with T = Tester]’:
-tester.cpp:94:11:   required from here
-ll.h:50:9: error: lvalue required as left operand of assignment
-    this = &tempList;
-    ~~~~~^~~~~~~~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind reported errors
+Valgrind reported errors (test failed).
 
 Overall Grade: F
