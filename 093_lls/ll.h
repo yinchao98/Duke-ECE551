@@ -38,7 +38,7 @@ public:
 		}
 	}
 	LinkedList & operator=(const LinkedList & rhs) {
-		if(this != rhs) {
+		if(this != &rhs) {
 			// copy to a new linkedlist
 			LinkedList tempList(rhs);
 			// delete old linkedList
