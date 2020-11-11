@@ -47,7 +47,9 @@ public:
 				delete head;
 				head = tempNode;
 			}
-			this = &tempList;
+			head = tempList.head;
+			tail = tempList.tail;
+			size = tempList.getSize();
 		}
 		return *this;
 	}
