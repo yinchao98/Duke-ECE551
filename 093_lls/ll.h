@@ -47,7 +47,7 @@ public:
 				delete head;
 				head = tempNode;
 			}
-			this = tempList;
+			this = &tempList;
 		}
 		return *this;
 	}
