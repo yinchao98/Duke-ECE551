@@ -38,36 +38,22 @@ public:
 		}
 	}
 	LinkedList & operator=(const LinkedList & rhs) {
-		// if(this != &rhs) {
-		// 	// copy to a new linkedlist
-		// 	LinkedList tempList(rhs);
-		// 	// delete old linkedList
-		// 	while(head != NULL) {
-		// 		Node * tempNode = head->next;
-		// 		delete head;
-		// 		head = tempNode;
-		// 	}
-		// 	head = tempList.head;
-		// 	tail = tempList.tail;
-		// 	size = tempList.getSize();
-		// }
-		// return *this;
-		if (this != &rhs) {
-	      while (head != NULL) {
-	        Node * temp = head->next;
-	        delete head;
-	        head = temp;
-	      }
-	      tail = NULL;
-	      size = 0;
-	      Node * current = rhs.tail;
-	      while (current != NULL) {
-	        this->addFront(current->data);
-	        current = current->prev;
-	      }
-	      size = rhs.size;
-    	}
-    	return *this;
+		if(this != &rhs) {
+			// copy to a new linkedlist
+			LinkedList tempList(rhs);
+			// delete old linkedList
+			while(head != NULL) {
+				Node * tempNode = head->next;
+				delete head;
+				head = tempNode;
+			}
+			head = tempList.head;
+			tail = tempList.tail;
+			size = tempList.getSize();
+			tempList.head = NULL;
+			tempList.tail = NULL;
+		}
+		return *this;
 	}
 	~LinkedList() {
 		while(head != NULL) {
