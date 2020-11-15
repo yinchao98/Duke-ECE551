@@ -22,14 +22,28 @@ public:
   BstMap<K,V>(): root(NULL) {}
     // copy constructor
   BstMap(const BstMap & rhs): root(NULL) {
-    Node * current = rhs.root;
-    while(current != NULL) {
-      this->add(current->key, current->value);
-    }
+    root = copyHelper(rhs.root);
   }
-    // destructor
+  Node* copyHelper(Node * current) {
+    if (current == NULL) {
+      return NULL;
+    }
+    Node *copyNode = new Node(current->key, current->value);
+    copyNode->left = copyHelper(current->left);
+    copyNode->right = copyHelper(current->right);
+    return copyNode;
+  }
+  BstMap& operator=(const BstMap & rhs) {
+    if(this!= &rhs){
+      destroy(root);
+      root=copyHelper(rhs.root);
+    }
+    return *this;
+  }
+  // destructor
   ~BstMap<K,V>() {
     destroy(root);
+    //root = NULL;
   }
     // destroy
   void destroy(Node * current) {

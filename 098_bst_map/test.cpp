@@ -24,5 +24,10 @@ int main() {
   std::cout << "ans2 should be 7 and =" << ans2 << "\n";
   map.remove(12);
   map.inOrderPrint();
+
+  BstMap<int, int> map2(map);
+  map2.inOrderPrint();
+
+  
   return EXIT_SUCCESS;
 }
