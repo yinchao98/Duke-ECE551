@@ -1,113 +1,68 @@
-Grading at 11/15/2020:08:03:21.051066
-For commit ID 729cc9e354518c7bebca67ffc394c3412298ea8a
-Grading at Sun Nov 15 16:02:33 CST 2020
+Grading at 11/15/2020:11:45:59.266343
+For commit ID 78620572dc7abce61e2ca50374bd1afc184035b2
+Grading at Sun Nov 15 19:45:50 CST 2020
 -----------------------------------------------
 testcase 1 : Testing with BstMap<int,int>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5756== Memcheck, a memory error detector
-==5756== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5756== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5756== Command: ./test.1
-==5756== Parent PID: 5755
-==5756== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 2 : Testing with BstMap<int,std::string>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5779== Memcheck, a memory error detector
-==5779== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5779== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5779== Command: ./test.2
-==5779== Parent PID: 5778
-==5779== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 3 : Testing with BstMap<int,(a custom class we wrote)>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5794== Memcheck, a memory error detector
-==5794== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5794== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5794== Command: ./test.3
-==5794== Parent PID: 5793
-==5794== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 4 : Testing with BstMap<std::string,int>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5817== Memcheck, a memory error detector
-==5817== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5817== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5817== Command: ./test.4
-==5817== Parent PID: 5816
-==5817== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 5 : Testing with BstMap<std::string,std::string>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5831== Memcheck, a memory error detector
-==5831== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5831== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5831== Command: ./test.5
-==5831== Parent PID: 5830
-==5831== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 6 : Testing with BstMap<std::string,(a custom class we wrote)>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5847== Memcheck, a memory error detector
-==5847== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5847== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5847== Command: ./test.6
-==5847== Parent PID: 5846
-==5847== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 7 : Testing with BstMap<(a custom class we wrote),int>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5861== Memcheck, a memory error detector
-==5861== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5861== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5861== Command: ./test.7
-==5861== Parent PID: 5860
-==5861== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 8 : Testing with BstMap<(a custom class we wrote),std::string>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5891== Memcheck, a memory error detector
-==5891== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5891== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5891== Command: ./test.8
-==5891== Parent PID: 5890
-==5891== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 9 : Testing with BstMap<(a custom class we wrote),(a custom class we wrote)>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==5906== Memcheck, a memory error detector
-==5906== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5906== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5906== Command: ./test.9
-==5906== Parent PID: 5905
-==5906== 
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 
-Overall Grade: F
+Overall Grade: A
