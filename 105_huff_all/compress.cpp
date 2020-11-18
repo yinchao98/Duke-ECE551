@@ -49,7 +49,7 @@ void writeCompressedOutput(const char* inFile,
     }
     bfw.writeBitString(it->second);
   }
-  it = theMap.find(EOF);
+  it = theMap.find(256);
   bfw.writeBitString(it->second);
   //You need to read the input file, lookup the characters in the map,
   //and write the proper bit string with the BitFileWriter
