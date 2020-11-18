@@ -13,6 +13,7 @@ int main(int argc, char** argv) {
 	checkArgs(argc, 3);
 	// parse the line into the struct
 	Category<std::string, std::string> category = parseLine(argv[1]);
+	category.printCat();
 	// extract the story template
 	std::string storyTemplate = parseContent(argv[2]);
 	// replace the template with corresponding words

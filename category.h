@@ -64,29 +64,47 @@ public:
  		return size;
  	}
 
-	template<typename A, typename B>
-    friend std::ostream& operator<<(std::ostream& ostream, const Category<A,B> & category);
+ 	void printCat() {
+		typename std::map<K, std::set<V> >::iterator it1 = map.begin();
+		typename std::set<V>::iterator it2;
+		while(it1 != map.end()) {
+			std::string categoryName(it1->first);
+			std::set<std::string> words = it1->second;
+			it2 = words.begin();
+			std::cout << categoryName << ":";
+			while(it2 != words.end()) {
+				std::string wordName = *it2;
+				std::cout << wordName << " ";
+				++it2;
+			}
+			std::cout << std::endl;
+			++it1;
+		}
+ 	}
+
+	// template<typename A, typename B>
+ //    friend std::ostream& operator<<(std::ostream& ostream, const Category<A,B> & category);
 	
 };
 
-template<typename A, typename B>
-std::ostream& operator<<(std::ostream& ostream, const Category<A, B> & category){
-	std::map<A, std::set<B> > categoryMap = category.map;
-	typename std::map<A, std::set<B> >::iterator it1 = categoryMap.begin();
-	typename std::set<B>::iterator it2;
-	while(it1 != category.map.end()) {
-		std::string categoryName(it1->first);
-		std::set<std::string> words = it1->second;
-		it2 = words.begin();
-		ostream << " " << categoryName << ":" << std::endl;
-		while(it2 != words.end()) {
-			std::string wordName = *it2;
-			ostream << wordName << std::endl;
-			++it2;
-		}
-		++it1;
-	}
-  	return ostream;
-}
+// template<typename A, typename B>
+// std::ostream& operator<<(std::ostream& ostream, const Category<A, B> & category){
+// 	std::map<A, std::set<B> > categoryMap = category.map;
+// 	typename std::map<A, std::set<B> >::iterator it1 = categoryMap.begin();
+// 	typename std::set<B>::iterator it2;
+// 	while(it1 != category.map.end()) {
+// 		std::string categoryName(it1->first);
+// 		std::set<std::string> words = it1->second;
+// 		it2 = words.begin();
+// 		ostream << " " << categoryName << ":" << std::endl;
+// 		while(it2 != words.end()) {
+// 			std::string wordName = *it2;
+// 			ostream << wordName << std::endl;
+// 			++it2;
+// 		}
+// 		++it1;
+// 	}
+//   	return ostream;
+// }
 
 

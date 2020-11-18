@@ -144,7 +144,7 @@ bool checkTemplate(std::string templateName, Category<std::string, std::string> 
 /*function: getTemplateWord
 			given the template, usedWord category and catarray
 			return the corresponding replaceWord*/
-std::string getTemplateWord(std::string templateName, Category<std::string, std::string> & cat, std::vector<std::string> usedWords) {
+std::string getTemplateWord(std::string templateName, Category<std::string, std::string> & cat, std::vector<std::string> & usedWords) {
 	int i = checkInt(templateName);
 	bool j = checkTemplate(templateName, cat);
 	std::string replaceWord;
@@ -186,7 +186,7 @@ std::string replaceTemplate(std::string story, Category<std::string, std::string
 			// extract the template between two '_'
 			std::string templateName(str1.substr(0, index2));
 			// get the corresponding replaceWord according to template
-			std::string replaceWord = getTemplateWord(templateName, cat, usedWords);
+			std::string replaceWord(getTemplateWord(templateName, cat, usedWords));
 			// update usedWord category to store the replaceWord 
 			usedWords.push_back(replaceWord);
 			result += replaceWord;
