@@ -20,7 +20,6 @@ public:
 			std::map<K, std::set<V> > tempMap(rhs.map);
 			delete map;
 			map = tempMap;
-			tempMap = NULL;
 		}
 		return *this;
 	}
@@ -42,7 +41,7 @@ public:
 	    return;
 	}
 	// randomly choose word from key
- 	const V & chooseWord(K & key) const{
+ 	const V chooseWord(K & key) const {
  		std::set<V> words = map.at(key);
  		srand((unsigned)time(NULL));
  		int rad = random()% words.size();
