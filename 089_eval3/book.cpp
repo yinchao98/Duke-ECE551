@@ -78,11 +78,12 @@ void Book::startStory() {
 		}
       	std::string s;
       	std::getline(std::cin, s);
-      	pageNum = atoi(s.c_str());
-      	if(pageNum <= 1 || pageNum > pages.size()) {
+      	int choiceNum = atoi(s.c_str());
+      	if(choiceNum < 1 || choiceNum > pages[pageNum - 1].navigation.size()) {
       		std::cout << "That is not a valid choice, please try again" << std::endl;
       		continue;
       	}
+      	pageNum = pages[pageNum - 1].navigation[choiceNum - 1].first;
       	pages[pageNum - 1].printPage();
     }
 }
