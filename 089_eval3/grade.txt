@@ -1,6 +1,6 @@
-Grading at 11/21/2020:03:30:33.891275
-For commit ID 65641bf920a544b2c7972e2e3b8aeecacccdc973
-Grading at Sat Nov 21 11:30:32 CST 2020
+Grading at 11/21/2020:03:36:35.711398
+For commit ID f558262d62a2f8e22524606a0ce9b2b502f35626
+Grading at Sat Nov 21 11:36:34 CST 2020
 Doing some basic sanity checking for your submission
 
 Step 1
@@ -19,7 +19,13 @@ Your file matched the expected output
 Step 2
 Checking that cyoa-step2 compiles
 rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o rand_story.o
-The code did not compile!
+g++    -c -o cyoa-step2.o cyoa-step2.cpp
+g++ -o cyoa-step2 cyoa-step2.o page.o book.o
+rm cyoa-step2.o
+Testing ./cyoa-step2 story1 2\n1\n
+Your file matched the expected output
+Testing ./cyoa-step2 story1 1\n4\n1\n3\n
+Your file matched the expected output
 
 Step 3
 Checking that cyoa-step3 compiles
@@ -38,7 +44,7 @@ rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o c
 The code did not compile!
 
 Step 1: PASSED
-Step 2: FAILED
+Step 2: PASSED
 Step 3: PASSED
 Step 4: FAILED
 
