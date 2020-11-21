@@ -41,6 +41,10 @@ void Book::readPages(char* dirPath) {
 }
 
 void Book::checkPages() {
+	if(winPages.size() < 1 || losePages.size() < 1) {
+		std::cerr << "WIN page or LOSE page doesn't exist" << std::endl;
+    	exit(EXIT_FAILURE);
+	}
 	std::vector<bool> pageVisited(pages.size(), false);
 	pageVisited[0] = true;
 	for(size_t i = 0; i < pages.size(); i++) {
@@ -99,9 +103,10 @@ std::set<unsigned> Book::getReachable() {
 			}
 			++it;
 		}
-		if(reachableSet == tempSet) {
+		if(reachableSet.size() == tempSet.size()) {
 			break;
 		}
+		tempSet = reachableSet;
 	}
 	return reachableSet;
 }
