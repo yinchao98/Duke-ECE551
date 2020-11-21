@@ -101,10 +101,12 @@ void Page::printPage() {
 		std::cout << "What would you like to do ?" << std::endl;
 		std::cout << std::endl;
 		std::vector<std::pair<unsigned, std::string> >::iterator it = navigation.begin();
+		unsigned i = 1;
 		while(it != navigation.end()) {
-			std::cout << " " << it->first << ". ";
+			std::cout << " " << i << ". ";
 			std::cout << it->second << std::endl;
 			++it;
+			++i;
 		}
 	}
 }
