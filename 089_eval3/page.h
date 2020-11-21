@@ -9,15 +9,17 @@ public:
 	bool result;
 	std::vector<std::pair<unsigned, std::string> > navigation;
 	std::string text;
+	std::vector<std::pair<unsigned, unsigned> > refPage;
 public:
-	Page(): result(false), navigation(), text() {}
-	Page(const Page & rhs): result(rhs.result), 
-							navigation(rhs.navigation), text(rhs.text) {}
+	Page(): result(false), navigation(), text(), refPage() {}
+	Page(const Page & rhs): result(rhs.result), navigation(rhs.navigation),
+							text(rhs.text), refPage(rhs.refPage) {}
 	Page & operator=(const Page & rhs) {
 		if(this != &rhs) {
 			result = rhs.result;
 			navigation = rhs.navigation;
 			text = rhs.text;
+			refPage = rhs.refPage;
 		}
 		return *this;
 	}

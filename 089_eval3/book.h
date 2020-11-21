@@ -21,4 +21,6 @@ public:
 	void startStory();
 	std::set<unsigned> getReachable();
 	void notReachable(std::set<unsigned> reachable);
+	std::vector<std::pair<unsigned, unsigned> > solveStory(std::set<unsigned> reachable);
+	void printSolution(std::vector<std::pair<unsigned, unsigned> > solution);
 };

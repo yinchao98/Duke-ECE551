@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include "book.h"
 
 void Book::addPage(Page page) {
@@ -55,6 +56,7 @@ void Book::checkPages() {
 			unsigned pageNum = pages[i].navigation[j].first;
 			if(pageNum >= 1 && pageNum <= pages.size()) {
 				pageVisited[pageNum - 1] = true;
+				pages[pageNum - 1].refPage.push_back(std::pair<unsigned, unsigned>(i + 1, j + 1));
 			} else {
 				std::cerr << "page conditions are not met" << std::endl;
     			exit(EXIT_FAILURE);
@@ -120,6 +122,48 @@ void Book::notReachable(std::set<unsigned> reachable) {
 			std::cout << "Page " << i + 1 << " is not reachable" << std::endl;
 		}
 		++it;
+	}
+}
+
+std::vector<std::pair<unsigned, unsigned> > Book::solveStory(std::set<unsigned> reachable) {
+	std::set<unsigned>::iterator it = reachable.begin();
+	while(it != reachable.end()) {
+		if(pages[*it - 1].isEnd()) {
+			if(pages[*it - 1].result) {
+				break;
+			}
+		}
+		++it;
+	}
+	if(it == reachable.end()) {
+		std::cout << "There is no way to win" << std::endl;
+		exit(EXIT_SUCCESS);
+	}
+	std::vector<std::pair<unsigned, unsigned> > solution;
+	solution.insert(solution.begin(), std::pair<unsigned, unsigned>(*it, 0));
+	unsigned pageNum = *it;
+	unsigned choice;
+	while(pageNum != 1) {
+		for(size_t i = 0; i < pages[pageNum - 1].refPage.size(); i++) {
+			it = reachable.find(pages[pageNum - 1].refPage[i].first);
+			if(it != reachable.end()) {
+				choice = pages[pageNum - 1].refPage[i].second;
+				break;
+			}
+		}
+		pageNum = *it;
+		solution.insert(solution.begin(), std::pair<unsigned, unsigned>(pageNum, choice));
+	}
+	return solution;
+}
+
+void Book::printSolution(std::vector<std::pair<unsigned, unsigned> > solution) {
+	for(size_t i = 0; i < solution.size(); i++) {
+		if(solution[i].second == 0) {
+			std::cout << "Page " << solution[i].first << " WIN" << std::endl; 
+		} else {
+			std::cout << "Page " << solution[i].first << " Choice " << solution[i].second << std::endl;
+		}
 	}
 }
 
