@@ -1,12 +1,11 @@
-Grading at 11/21/2020:04:57:15.815956
-For commit ID 3dcd02983772e1f2004bfaf78ae79b0af97a83e1
-Grading at Sat Nov 21 12:57:13 CST 2020
+Grading at 11/22/2020:12:35:40.703595
+For commit ID ac95d7e4da162d3b52e543639bd77431aa716a53
+Grading at Sun Nov 22 20:35:38 CST 2020
 Doing some basic sanity checking for your submission
 
 Step 1
 Checking that cyoa-step1 compiles
 rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o rand_story.o
-g++    -c -o page.o page.cpp
 g++    -c -o cyoa-step1.o cyoa-step1.cpp
 g++ -o cyoa-step1 cyoa-step1.o page.o book.o
 rm cyoa-step1.o
