@@ -1,11 +1,13 @@
-Grading at 11/22/2020:12:35:40.703595
-For commit ID ac95d7e4da162d3b52e543639bd77431aa716a53
-Grading at Sun Nov 22 20:35:38 CST 2020
+Grading at 11/24/2020:07:15:04.192060
+For commit ID f97134d501519df9cbc319e5f91bbb89104a2318
+Grading at Tue Nov 24 15:14:58 CST 2020
 Doing some basic sanity checking for your submission
 
 Step 1
 Checking that cyoa-step1 compiles
-rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o rand_story.o
+rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o page.o book.o
+g++    -c -o page.o page.cpp
+g++    -c -o book.o book.cpp
 g++    -c -o cyoa-step1.o cyoa-step1.cpp
 g++ -o cyoa-step1 cyoa-step1.o page.o book.o
 rm cyoa-step1.o
@@ -18,7 +20,9 @@ Your file matched the expected output
 
 Step 2
 Checking that cyoa-step2 compiles
-rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o rand_story.o
+rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o page.o book.o
+g++    -c -o page.o page.cpp
+g++    -c -o book.o book.cpp
 g++    -c -o cyoa-step2.o cyoa-step2.cpp
 g++ -o cyoa-step2 cyoa-step2.o page.o book.o
 rm cyoa-step2.o
@@ -29,7 +33,9 @@ Your file matched the expected output
 
 Step 3
 Checking that cyoa-step3 compiles
-rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o rand_story.o
+rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o page.o book.o
+g++    -c -o page.o page.cpp
+g++    -c -o book.o book.cpp
 g++    -c -o cyoa-step3.o cyoa-step3.cpp
 g++ -o cyoa-step3 cyoa-step3.o page.o book.o
 rm cyoa-step3.o
@@ -40,7 +46,9 @@ Your file matched the expected output
 
 Step 4
 Checking that cyoa-step4 compiles
-rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o rand_story.o
+rm -f *~ cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4 cyoa-step1.o cyoa-step2.o cyoa-step3.o cyoa-step4.o page.o book.o
+g++    -c -o page.o page.cpp
+g++    -c -o book.o book.cpp
 g++    -c -o cyoa-step4.o cyoa-step4.cpp
 g++ -o cyoa-step4 cyoa-step4.o page.o book.o
 rm cyoa-step4.o
