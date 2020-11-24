@@ -6,6 +6,7 @@
 #include <vector>
 #include "page.h"
 
+
 // handle errors 
 void errorHandling(std::string errorMsg) {
 	std::cerr << errorMsg << std::endl;

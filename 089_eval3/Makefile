@@ -1,6 +1,6 @@
-CFLAGS=-std=gnu99 -pedantic -Wall -Werror -ggdb3
+CFLAGS=-std=gnu++98 -pedantic -Wall -Werror -ggdb3
 PROGS=cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4
-OBJS=$(patsubst %,%.o,$(PROGS)) rand_story.o
+OBJS=$(patsubst %,%.o,$(PROGS)) page.o book.o
 all: $(PROGS)
 cyoa-step%: cyoa-step%.o page.o book.o
 	g++ -o $@ $^
