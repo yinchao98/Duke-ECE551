@@ -36,7 +36,7 @@ std::string parseContent(char* file) {
 	while (!f.eof()) {
         std::string s;
         std::getline(f, s);
-        if(s == "") {
+        if(s == "" && f.eof()) {
         	break;
         }
         content += s;
@@ -85,7 +85,7 @@ Category<std::string, std::string> parseLine(char* file) {
 		// extract name and word
         std::string s;
         std::getline(f, s);
-        if(s == "") {
+        if(s == "" && f.eof()) {
         	break;
         }
         std::string name = getName(s);
