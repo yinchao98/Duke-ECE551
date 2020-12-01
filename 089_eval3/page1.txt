@@ -1,6 +1,4 @@
-2:Choose the magic whistle.
-3:Choose the magic shoes.
-4:Choose the magic toaster.
+LOSE
 #
 One day, a strange old wizard comes to your village and tells you that
 there is an evil dragon lurking in the hills. This wizard's story explains
