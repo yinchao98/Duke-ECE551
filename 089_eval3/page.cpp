@@ -51,6 +51,9 @@ std::pair<unsigned, std::string> Page::checkChoices(std::string str) {
     }
   }
   int value = atoi(pageNum.c_str());
+  if(value == 0) {
+    errorHandling("wrong page file format -> navigation");
+  }
   return std::pair<unsigned, std::string>(value, choice);
 }
 

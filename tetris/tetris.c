@@ -5,23 +5,10 @@
 
 #include "tetris.h"
 
-int getMax(int x, int y) {
-    if (x < y) return y;
-    else return x;
-}
-
-int getMin(int x, int y) {
-    if (x < y) return x;
-    else return y;
-}
-
 void getRandBlock() {
-    // curr_type = rand() % NUM_TYPE;
-    // curr_dire = rand() % NUM_DIREC;
-    //curr_block = blocks[curr_type][curr_dire];
-    curr_type = 1;
-    curr_dire = 0;
-    curr_block = blocks[1][0];
+    curr_type = rand() % NUM_TYPE;
+    curr_dire = rand() % NUM_DIREC;
+    curr_block = blocks[curr_type][curr_dire];
     curr_x = 7;
     curr_y = -3;
     return;
@@ -75,36 +62,9 @@ void refreshBackground() {
         }
         printf("\n");
     }
+    printf("score: %d\n", score);
     return;
 }
-
-// int CheckNewTurn() {
-//     int tmpY = curr_y + 1;     // 方块是否能移动到下一行是进入新一轮的依据，这里用tmpY表示下一行
-//     int isNewTurn = 0;
-//     for (int i = 0; i < 4; i++)
-//     {
-//         for (int j = 0; j < 4; j++)
-//         {
-//             if (j + tmpY < 0)
-//             {
-//                 continue;
-//             }
-//             if (curr_block[4 * i + j] == 0)
-//             {
-//                 continue;    // 方块4*4数组中数据为0的位置忽略
-//             }
-//             if (backGround[j + tmpY][i + curr_x] == 1)
-//             {
-//                 isNewTurn = 1;    // 格子界面下一行如果不是空的，就进入下一轮
-//             }
-//             if (j + tmpY >= BG_HEIGHT)
-//              {
-//                 isNewTurn = 1; // 方块降到底部进入下一轮
-//             }
-//         }
-//     }
-//     return isNewTurn;
-// }
 
 void renewBackground() {
     for (int index = 0; index < 16; index++) {
@@ -117,6 +77,7 @@ void renewBackground() {
             backGround[curr_y + i][curr_x + j] = 1;
         }
     }
+    score += 1;
     return;
 }
 
@@ -150,6 +111,7 @@ void clearLine() {
         }
         //if all one, remove this line
         moveDownBackgroundFrom(j);
+        score += 10;
         // after exchange, the j-1 line become the j line
         j++;
     }
@@ -166,7 +128,7 @@ int blockOverlap(int row, int col) {
         return 0;
     }
     // already has a block
-    if(backGround[row][row] == 1) {
+    if(backGround[row][col] == 1) {
         return 1;
     }
     return 0;
@@ -245,6 +207,7 @@ void renewInfo(int thisKey) {
 }
 
 int main() {
+    score = 0;
     int thisKey;
     curr_block = blocks[1][0];
     while (1) {

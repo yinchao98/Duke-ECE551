@@ -169,4 +169,6 @@ int curr_dire = 2;
 
 int * curr_block;
 
+int score = 0;
+
 #endif
